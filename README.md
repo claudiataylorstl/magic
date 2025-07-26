@@ -1,12 +1,28 @@
-# React + Vite
+# ✨ You Are Magic
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An animated React application that reminds people how magical they are. Built with Vite, React, with animations with Framer Motion and React Spring.
 
-Currently, two official plugins are available:
+✨ **[Try it out](https://claudiataylorstl.github.io/magic/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## License
 
-## Expanding the ESLint configuration
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Acknowledgments
+
+- Inspired by the need to remind people of their inherent magic
+- Star animations inspired by various CodePen examples
+- Gradient techniques from CSS-Tricks
+- The React and Vite communities for excellent documentation
+
+## Future Enhancements
+
+- [ ] Add more affirmation messages & user submissions
+- [ ] Create different themes (night/day)
+- [ ] Implement share functionality
+- [ ] Add more animation varieties
+- [ ] Create a backend for favorites and community features
+
+---
+
+Made with 💜 by [Claudia Taylor](https://github.com/claudiataylorstl)
