@@ -1,6 +1,6 @@
 # ✨ You Are Magic
 
-An animated React application that reminds people how magical they are. Built with Vite, React, with animations with Framer Motion and React Spring.
+An animated React application that reminds people how magical they are. Built with Vite, React, with animations using Motion for React and React Spring.
 
 ✨ **[Try it out](https://claudiataylorstl.github.io/magic/)**
 
