@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import Stars from './components/Stars';
+import AnimatedStars from './components/AnimatedStars';
 import { useTrail, animated as a } from '@react-spring/web';
 
 const Trail = ({ open, children }) => {
@@ -74,25 +74,27 @@ function You() {
 
     return (
         <>
-            <Stars />
+            <AnimatedStars />
             <div className="text-white vh-100 d-flex justify-content-center align-items-center text-center position-relative" 
                  style={{ 
                      fontSize: '3rem', 
                      zIndex: 3,
                      fontWeight: '300'
                  }}>
-                <div className="px-4">
+                <div className="affirmation-text">
                     <Trail open={open}>
                         {words.map((word, i) => (
                             <span
                                 key={i}
                                 style={{
+                                    
                                     display: 'inline-block',
                                     marginRight: '0.5rem',
                                     textShadow: '2px 2px 8px rgba(255, 175, 204, 0.5)',
-                                    fontSize: '3rem',
-                                    fontWeight: '300',
+                                    fontSize: '6rem',
+                                    
                                     color: 'white'
+                                    
                                 }}
                             >
                                 {word}
