@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@react-spring/web": "^10.0.1",
+    "@tsparticles/path-svg": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "bootstrap": "^5.3.7",
     "motion": "^12.23.9",
