@@ -1,8 +1,43 @@
 
 import React, { useState, useEffect } from 'react';
+import Stars from './components/Stars';
+import { useTrail, animated as a } from '@react-spring/web';
+
+const Trail = ({ open, children }) => {
+  const items = React.Children.toArray(children);
+  const trail = useTrail(items.length, {
+    config: { mass: 2, tension: 3000, friction: 200 },
+    opacity: open ? 1 : 0,
+    transform: open ? 'translate3d(0,0px,0) scale(1) rotate(0deg)' : 'translate3d(0,40px,0) scale(0) rotate(180deg)',
+    from: { 
+      opacity: 0, 
+      transform: 'translate3d(0,40px,0) scale(0) rotate(180deg)' 
+    },
+    delay: 200,
+    trail: 100 // Stagger between each word
+  });
+
+  return (
+    <>
+      {trail.map((style, index) => (
+        <a.span 
+          key={index} 
+          style={{
+            ...style,
+            display: 'inline-block',
+            marginRight: '0.5rem',
+            textShadow: '2px 2px 8px rgba(255, 175, 204, 0.5)',
+          }}
+        >
+          {items[index]}
+        </a.span>
+      ))}
+    </>
+  );
+};
 
 function You() {
-    // Pool of strings to choose from
+    
     const textPool = [
         "You light up the room!",
         "You significantly bring up the average of human goodness.",
@@ -20,25 +55,54 @@ function You() {
     ];
 
     const [randomText, setRandomText] = useState('');
+    const [open, setOpen] = useState(false);
 
-    // Function to get random text from pool
+    
     const getRandomText = () => {
         const randomIndex = Math.floor(Math.random() * textPool.length);
         return textPool[randomIndex];
     };
 
-    // Set random text when component loads
     useEffect(() => {
         setRandomText(getRandomText());
+        
+        setTimeout(() => setOpen(true), 100);
     }, []);
 
+    
+    const words = randomText.split(' ');
 
-     return (
-        <div className="text-white vh-100 d-flex justify-content-center align-items-center text-center" style={{ fontSize: '8rem' }}>
-            {randomText}
-        </div>
-     )
-
-
+    return (
+        <>
+            <Stars />
+            <div className="text-white vh-100 d-flex justify-content-center align-items-center text-center position-relative" 
+                 style={{ 
+                     fontSize: '3rem', 
+                     zIndex: 3,
+                     fontWeight: '300'
+                 }}>
+                <div className="px-4">
+                    <Trail open={open}>
+                        {words.map((word, i) => (
+                            <span
+                                key={i}
+                                style={{
+                                    display: 'inline-block',
+                                    marginRight: '0.5rem',
+                                    textShadow: '2px 2px 8px rgba(255, 175, 204, 0.5)',
+                                    fontSize: '3rem',
+                                    fontWeight: '300',
+                                    color: 'white'
+                                }}
+                            >
+                                {word}
+                            </span>
+                        ))}
+                    </Trail>
+                </div>
+            </div>
+        </>
+    );
 }
+
 export default You;

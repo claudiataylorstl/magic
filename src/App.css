@@ -12,13 +12,13 @@
 }
 
 .gradient-background {
-  background: linear-gradient(238deg,#e0777d,#8e3b46,#4c86a8,#477890);
+  background: linear-gradient(284deg,#db5461,#4c6085,#772d8b,#f5b800);
   background-size: 240% 240%;
   animation: gradient-animation 12s ease infinite;
 }
 
 body {
-  background: linear-gradient(238deg,#e0777d,#8e3b46,#4c86a8,#477890);
+  background: linear-gradient(284deg,#db5461,#4c6085,#772d8b,#f5b800);
   background-size: 240% 240%;
   animation: gradient-animation 12s ease infinite;
   margin: 0;

@@ -6,15 +6,16 @@ import You from './You.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/magic">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/you" element={<You />} />
+        
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
-
 export default App
