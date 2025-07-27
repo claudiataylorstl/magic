@@ -23,7 +23,7 @@ function AnimatedStars() {
         {
         fullScreen: {
           enable: true,
-          zIndex: 0,
+          zIndex: -1,
         },
         particles: {
           number: {
@@ -147,9 +147,10 @@ function AnimatedStars() {
             },
           },
         },
-        background: {
-          image: "url('/grad.PNG')",
-          position: "center",
+         background: {
+          color: "transparent", // Set background to transparent
+          image: "none",
+          position: "50% 50%",
           repeat: "no-repeat",
           size: "cover",
         },

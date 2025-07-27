@@ -1,3 +1,4 @@
+/* App component and layout styles */
 #root {
   width: 100% !important;
   max-width: none !important;
@@ -6,68 +7,45 @@
   text-align: center;
   min-height: 100vh;
   font-family: "Libertinus Math", system-ui;
+  cursor: url('src\assets\whitewand1.svg'), auto;
 }
 
+/* Bootstrap font size overrides */
 :root {
   --bs-body-font-size: 11rem !important;
 }
 
-.gradient-background {
-  background: linear-gradient(284deg,#db5461,#4c6085,#772d8b,#f5b800);
-  background-size: 240% 240%;
-  animation: gradient-animation 12s ease infinite;
-}
-
-body {
-  background: linear-gradient(284deg,#db5461,#4c6085,#772d8b,#f5b800);
-  background-size: 240% 240%;
-  animation: gradient-animation 12s ease infinite;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  font-family: "Libertinus Math", system-ui;
-}
-
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* Responsive font sizes */
 @media (max-width: 576px) {
-  :root { 
+  :root {
     --bs-body-font-size: 6rem !important;
   }
 }
 
 @media (max-width: 768px) {
-  :root { 
+  :root {
     --bs-body-font-size: 8rem !important;
   }
 }
 
 @media (min-width: 1200px) {
-  :root { 
+  :root {
     --bs-body-font-size: 12rem !important;
   }
 }
 
+/* Logo styles */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -87,6 +65,7 @@ body {
   }
 }
 
+/* Card and content styles */
 .card {
   padding: 2em;
 }
@@ -95,25 +74,102 @@ body {
   color: #888;
 }
 
-* {
-   font-family: "Libertinus Math", system-ui;
-}
-.affirmation-text {
-  font-family: "Libertinus Math", system-ui;
-  font-size: 6rem;
-  font-weight: 400;
- 
-  letter-spacing: 0.02em;
- 
-  line-height: 1.3;
-}
-
- .bigboyletters {
+/* Typography utility classes */
+.bigboyletters {
   font-family: "Libertinus Math", system-ui;
   font-size: clamp(2rem, 12vw, 8rem);
   font-weight: 400;
- 
   text-transform: uppercase;
-
   letter-spacing: -0.01em;
- }
+  position: relative; /* Makes sure content is above canvas */
+    z-index: 1; /* Ensures the content is above the canvas */
+}
+
+/* You Component Styles */
+.you-container {
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.text-container {
+  position: relative;
+  /* Width scales with viewport and will be modified by CSS custom property */
+  width: calc(clamp(70%, 5vw + 75%, 95%) * var(--container-scale, 1));
+  /* Max-width using golden ratio proportions */
+  max-width: calc(clamp(1000px, 61.8vw, 1800px) * var(--container-scale, 1));
+  /* Min-height with golden ratio scaling */
+  min-height: calc(clamp(247px, 24.7vh, 618px) * var(--container-scale, 1));
+  /* Padding scales with golden ratio */
+  padding: calc(clamp(37px, 3.7vw, 74px) * var(--container-scale, 1));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  transition: all 0.5s ease;
+}
+
+.corner {
+  position: absolute;
+  width: clamp(30px, 2vw + 20px, 50px);
+  height: clamp(30px, 2vw + 20px, 50px);
+  transition: all 0.5s ease;
+}
+
+.corner.top-left {
+  top: 0;
+  left: 0;
+  border-top: clamp(1px, 0.15vw + 1px, 3px) solid rgba(255, 255, 255, 1);
+  border-left: clamp(1px, 0.15vw + 1px, 3px) solid rgba(255, 255, 255, 1);
+}
+
+.corner.bottom-right {
+  bottom: 0;
+  right: 0;
+  border-bottom: clamp(1px, 0.15vw + 1px, 3px) solid rgba(255, 255, 255, 1);
+  border-right: clamp(1px, 0.15vw + 1px, 3px) solid rgba(255, 255, 255, 1);
+}
+
+.affirmation-text {
+  font-family: "Libertinus Math", system-ui;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.affirmation-word {
+  display: inline-block;
+  margin-right: 1.2rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 2px 2px 8px rgba(255, 175, 204, 0.5);
+  color: white;
+}
+
+/* Hover Effects */
+.text-container:hover .corner.top-left {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 1);
+  border-width: 3px;
+}
+
+.text-container:hover .corner.bottom-right {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 1);
+  border-width: 3px;
+}
+
+
+.motion-div {
+    position: relative; /* Ensures it stays above the canvas */
+    z-index: 10; /* Higher than the canvas, ensures it's clickable */
+}

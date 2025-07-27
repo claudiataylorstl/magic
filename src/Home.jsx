@@ -1,10 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
+import AnimatedStars from "./components/AnimatedStars.jsx"
+import './App.css';
+
 
 function Home() {
     return (
-        <div className="bigboyletters text-white vh-100 d-flex flex-column justify-content-center align-items-center" style={{ fontSize: 'inherit' }}>
+        
+        
+        
+      
+        <div className="bigboyletters text-white vh-100 d-flex flex-column justify-content-center align-items-center customer-cursor" style={{ fontSize: 'inherit' }}>
+            
             <motion.div
                 whileHover={{ scale: 1.2 }}
                 whileTab={{ scale: 0.9 }}
@@ -13,7 +21,11 @@ function Home() {
             </motion.div>
             <p className="bigboyletters mb-0">ARE</p>
             <p className="bigboyletters mb-0">MAGIC</p>
+        <AnimatedStars />
         </div>
+    
+    
+    
     );
 }
 

@@ -1,34 +1,53 @@
 :root {
-  font-family: system-ui;
+  font-family: "Libertinus Math", system-ui;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global animated gradient background */
+body {
+  background: linear-gradient(284deg,#db5461,#4c6085,#772d8b,#f5b800);
+  background-size: 240% 240%;
+  animation: gradient-animation 12s ease infinite;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Libertinus Math", system-ui;
+  cursor: url('src\assets\whitewand1.svg'),auto;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Global font family */
+* {
+  font-family: "Libertinus Math", system-ui;
+}
+
+/* Global element styles */
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
-}
-
-body {
-  font-family: "Libertinus Math", system-ui;
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -47,26 +66,24 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Utility classes */
+.libertinus-math-regular {
+  font-family: "Libertinus Math", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
+
+/* Third-party library styles */
 #tsparticles {
   width: 100%;
   height: 100%;
@@ -75,9 +92,16 @@ button:focus-visible {
   top: 0;
   left: 0;
 }
-.libertinus-math-regular {
-  font-family: "Libertinus Math", system-ui;
-  font-weight: 400;
-  font-style: normal;
-}
 
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
