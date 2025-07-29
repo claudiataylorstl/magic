@@ -2,35 +2,46 @@ import React, { useState, useEffect, useRef } from 'react';
 import CornerSVG from './components/corner.svg';
 
 function You() {
-  const textPool = [
-    "You light up the room!",
-    "You significantly bring up the average of human goodness.",
-    "Your kindness is contagious.",
-    "You make the world better just by being in it.",
-    "You are effortlessly brilliant.",
-    "Trust that you are in the right place at the right time, doing the right things.",
-    "Are you good enough?\n Fuck yes you are!",
-    "You must do the things you think you cannot do",
-    "If you really think small, your world will be small. If you think big, your world will be big",
-    "Write it on your heart that every day is the best day in the year",
-    "There is nothing either good or bad, but thinking makes it so",
-    "Strive not to be a success, but rather to be of value.",
-    "If you're going through hell, keep going",
-    "Don't die before your dead",
-    "If you think you can't, you won't.",
-    "No rain drop feels responsible for the flood",
-    "You aren't stuck in traffic; you are the traffic",
-    "If you can not baffle them with brillance. Befuddle them with bullshit.",
-    "Everything will be ok in the end. If its not ok, then its not the end",
-    "You miss 100 % of the shots you don't take.",
-    "Never take criticism from someone you wouldn't take advice from.",
-    "In the whole scheme of things, this probably doesn't matter."
-  ];
+  const originalTextPool = [
+  "You light up the room!",
+  "You significantly bring up the average of human goodness.",
+  "Your kindness is contagious.",
+  "You make the world better just by being in it.",
+  "You are effortlessly brilliant.",
+  "Trust that you are in the right place at the right time, doing the right things.",
+  "Are you good enough? Fuck yes you are!",
+  "You must do the things you think you cannot do",
+  "If you really think small, your world will be small. If you think big, your world will be big",
+  "Write it on your heart that every day is the best day in the year",
+  "There is nothing either good or bad, but thinking makes it so",
+  "Strive not to be a success, but rather to be of value.",
+  "If you're going through hell, keep going",
+  "Don't die before your dead",
+  "If you think you can't, you won't.",
+  "No rain drop feels responsible for the flood",
+  "You aren't stuck in traffic; you are the traffic",
+  "If you can not baffle them with brillance. Befuddle them with bullshit.",
+  "Everything will be ok in the end. If its not ok, then its not the end",
+  "You miss 100 % of the shots you don't take.",
+  "Never take criticism from someone you wouldn't take advice from.",
+  "In the whole scheme of things, this probably doesn't matter."
+];
 
-  const [randomText, setRandomText] = useState('');
+const shuffleArray = (arr) => {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+};
+  
+const [randomText, setRandomText] = useState('');
   const [fontSize, setFontSize] = useState(1.0);
   const [containerDimensions, setContainerDimensions] = useState({ width: 0, height: 0 });
   const textContainerRef = useRef(null);
+  const [shuffledPool, setShuffledPool] = useState(shuffleArray(originalTextPool));
+const [currentIndex, setCurrentIndex] = useState(0);
 
   const phi = 1.618;
 
@@ -62,36 +73,45 @@ function You() {
     return groups;
   };
 
-  const handleReload = () => {
-    const text = getRandomText();
-    setRandomText(text);
+const handleReload = () => {
+  const nextIndex = currentIndex + 1;
 
-    const length = text.length;
-    let sizeFactor;
-    let containerScale;
+  if (nextIndex >= shuffledPool.length) {
+    const newShuffled = shuffleArray(originalTextPool);
+    setShuffledPool(newShuffled);
+    setCurrentIndex(0);
+    setRandomText(newShuffled[0]);
+  } else {
+    setCurrentIndex(nextIndex);
+    setRandomText(shuffledPool[nextIndex]);
+  }
 
-    if (length < 30) {
-      sizeFactor = phi * phi;
-      containerScale = phi;
-    } else if (length < 60) {
-      sizeFactor = phi;
-      containerScale = phi / 1.2;
-    } else if (length < 90) {
-      sizeFactor = 1;
-      containerScale = 1;
-    } else if (length < 120) {
-      sizeFactor = 1 / phi;
-      containerScale = 1 / 1.2;
-    } else {
-      sizeFactor = 1 / (phi * phi);
-      containerScale = 1 / phi;
-    }
+  // Sizing logic stays the same...
+  const length = text.length;
+  let sizeFactor;
+  let containerScale;
 
-    setFontSize(sizeFactor);
+  if (length < 30) {
+    sizeFactor = phi * phi;
+    containerScale = phi;
+  } else if (length < 60) {
+    sizeFactor = phi;
+    containerScale = phi / 1.2;
+  } else if (length < 90) {
+    sizeFactor = 1;
+    containerScale = 1;
+  } else if (length < 120) {
+    sizeFactor = 1 / phi;
+    containerScale = 1 / 1.2;
+  } else {
+    sizeFactor = 1 / (phi * phi);
+    containerScale = 1 / phi;
+  }
 
-    if (textContainerRef.current) {
-      textContainerRef.current.style.setProperty('--container-scale', containerScale);
-    }
+  setFontSize(sizeFactor);
+  if (textContainerRef.current) {
+    textContainerRef.current.style.setProperty('--container-scale', containerScale);
+  }
 
     // Position stars randomly
     const stars = document.querySelectorAll('.star');
@@ -101,19 +121,21 @@ function You() {
     });
   };
 
-  useEffect(() => {
-    handleReload();
+ useEffect(() => {
+  const initialShuffled = shuffleArray(originalTextPool);
+  setShuffledPool(initialShuffled);
+  setRandomText(initialShuffled[0]);
 
-    const resizeObserver = new ResizeObserver(() => {
-      if (textContainerRef.current) {
-        const { width, height } = textContainerRef.current.getBoundingClientRect();
-        setContainerDimensions({ width, height });
-      }
-    });
+  const resizeObserver = new ResizeObserver(() => {
+    if (textContainerRef.current) {
+      const { width, height } = textContainerRef.current.getBoundingClientRect();
+      setContainerDimensions({ width, height });
+    }
+  });
 
-    resizeObserver.observe(textContainerRef.current);
-    return () => resizeObserver.disconnect();
-  }, []);
+  resizeObserver.observe(textContainerRef.current);
+  return () => resizeObserver.disconnect();
+}, []);
 
   const wordGroups = randomText ? createGoldenWordGroups(randomText) : [];
   const { width, height } = containerDimensions;
