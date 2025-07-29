@@ -108,17 +108,16 @@ function AnimatedStars() {
           detect_on: "canvas",
           events: {
             onHover: {
-              enable: true,
+              enable: false,
               mode: "repulse",
               parallax: {
-                enable: true,
-                force: 60,
-                smooth: 10,
+                enable: false,
+                
               },
             },
             onClick: {
-              enable: true,
-              mode: "grab",
+              enable: false,
+              
             },
             resize: true,
           },

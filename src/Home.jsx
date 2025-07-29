@@ -1,31 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "motion/react";
-import AnimatedStars from "./components/AnimatedStars.jsx"
+import { motion } from "motion/react"; // Correct import from Builder.io Motion
+import AnimatedStars from "./components/AnimatedStars.jsx"; // Assuming you have this component
 import './App.css';
-
+import './index.css';
 
 function Home() {
+    // State for tilt data
+    // const [tiltData, setTiltData] = useState({ beta: 0, gamma: 0 });
+
+    // // Handle device orientation changes
+    // useEffect(() => {
+    //     const handleOrientation = (event) => {
+    //         const { beta, gamma } = event; // beta (x-axis), gamma (y-axis)
+    //         setTiltData({ beta, gamma });
+    //     };
+
+    //     // Listen for device orientation changes
+    //     window.addEventListener('deviceorientation', handleOrientation);
+
+    //     // Cleanup the event listener on component unmount
+    //     return () => {
+    //         window.removeEventListener('deviceorientation', handleOrientation);
+    //     };
+    // }, []);
+
+    // Apply the tilt data to transform properties
+    // const tiltEffect = {
+    //     transform: `rotateX(${tiltData.beta}deg) rotateY(${tiltData.gamma}deg)`,
+    //     transition: 'transform 0.1s ease-out',
+    // };
+
     return (
-        
-        
-        
-      
-        <div className="bigboyletters text-white vh-100 d-flex flex-column justify-content-center align-items-center customer-cursor" style={{ fontSize: 'inherit' }}>
-            
-            <motion.div
-                whileHover={{ scale: 1.2 }}
-                whileTab={{ scale: 0.9 }}
-            >
-                <Link to="/you" className="bigboyletters text-white text-decoration-none">YOU</Link>
-            </motion.div>
-            <p className="bigboyletters mb-0">ARE</p>
-            <p className="bigboyletters mb-0">MAGIC</p>
-        <AnimatedStars />
-        </div>
-    
-    
-    
+      <div className="you-are-magic-container">
+  <div className="centered-content">
+    <div className="you-line">
+      <Link to="/you" className="you-link glow-you">YOU</Link>
+    </div>
+    <div className="you-line">
+      <span className="you-text">ARE</span>
+    </div>
+    <div className="you-line">
+      <span className="you-text magic">MAGIC</span>
+    </div>
+  </div>
+
+  <AnimatedStars />
+</div>
+
     );
 }
 

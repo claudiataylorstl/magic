@@ -1,4 +1,4 @@
-/* App component and layout styles */
+/* App Root and Layout Styles */
 #root {
   width: 100% !important;
   max-width: none !important;
@@ -7,15 +7,15 @@
   text-align: center;
   min-height: 100vh;
   font-family: "Libertinus Math", system-ui;
-  cursor: url('src\assets\whitewand1.svg'), auto;
+  cursor: url('src/assets/whitewand1.svg') 16 16, auto;
+ 
 }
 
-/* Bootstrap font size overrides */
+/* Responsive Font Size Overrides */
 :root {
   --bs-body-font-size: 11rem !important;
 }
 
-/* Responsive font sizes */
 @media (max-width: 576px) {
   :root {
     --bs-body-font-size: 6rem !important;
@@ -34,7 +34,7 @@
   }
 }
 
-/* Logo styles */
+/* Logo Styling */
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -51,12 +51,8 @@
 }
 
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -65,7 +61,7 @@
   }
 }
 
-/* Card and content styles */
+/* Cards */
 .card {
   padding: 2em;
 }
@@ -74,18 +70,135 @@
   color: #888;
 }
 
-/* Typography utility classes */
+/* Typography */
 .bigboyletters {
   font-family: "Libertinus Math", system-ui;
   font-size: clamp(2rem, 12vw, 8rem);
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  position: relative; /* Makes sure content is above canvas */
-    z-index: 1; /* Ensures the content is above the canvas */
+  position: relative;
+  z-index: 1;
 }
 
-/* You Component Styles */
+@media (min-width: 768px) {
+  .bigboyletters {
+    font-size: clamp(4rem, 6vw, 12rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .bigboyletters {
+    font-size: clamp(3rem, 10vw, 7rem);
+  }
+}
+
+/* Home / YOU ARE MAGIC Section */
+.you-are-magic-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  
+  overflow: hidden;
+  text-align: center;
+}
+
+.motion-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  width: 100%;
+  gap: 0.5em;
+}
+
+.you-line {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.2em;
+}
+
+
+
+
+
+
+
+.you-link {
+  font-size: clamp(5rem, 16vh, 10rem);
+  font-family: 'Libertinus Math', serif;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  transition: text-shadow 0.3s ease;
+}
+
+.you-text {
+  font-size: clamp(5rem, 11vh, 9rem);
+  font-family: 'Libertinus Math', serif;
+  margin: 0;
+  color: white;
+  font-weight: 400;
+  text-align: center;
+}
+
+.you-text.magic {
+  font-size: clamp(6rem, 13vh, 12rem);
+  font-weight: 600;
+}
+
+.glow-you {
+  text-shadow:
+    0 0 6px #fff5f5,
+    0 0 12px #ff9edb,
+    0 0 20px #ffb6f9,
+    0 0 32px #ffcaff,
+    0 0 42px #ffccf9;
+  animation: glow-soft 2.8s ease-in-out infinite;
+}
+
+
+@keyframes glow-soft {
+  0%, 100% {
+    text-shadow:
+      0 0 6px #fff5f5,
+      0 0 12px #ff9edb,
+      0 0 20px #ffb6f9,
+      0 0 32px #ffcaff,
+      0 0 42px #ffccf9;
+  }
+  50% {
+    text-shadow:
+      0 0 2px #fff5f5,
+      0 0 6px #ff9edb,
+      0 0 12px #ffb6f9,
+      0 0 24px #ffcaff,
+      0 0 30px #ffccf9;
+  }
+}
+
+.animated-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* YOU Page Text Container and Corners */
 .you-container {
   color: white;
   height: 100vh;
@@ -97,13 +210,9 @@
 
 .text-container {
   position: relative;
-  /* Width scales with viewport and will be modified by CSS custom property */
   width: calc(clamp(70%, 5vw + 75%, 95%) * var(--container-scale, 1));
-  /* Max-width using golden ratio proportions */
   max-width: calc(clamp(1000px, 61.8vw, 1800px) * var(--container-scale, 1));
-  /* Min-height with golden ratio scaling */
   min-height: calc(clamp(247px, 24.7vh, 618px) * var(--container-scale, 1));
-  /* Padding scales with golden ratio */
   padding: calc(clamp(37px, 3.7vw, 74px) * var(--container-scale, 1));
   display: flex;
   justify-content: center;
@@ -133,6 +242,14 @@
   border-right: clamp(1px, 0.15vw + 1px, 3px) solid rgba(255, 255, 255, 1);
 }
 
+.text-container:hover .corner.top-left,
+.text-container:hover .corner.bottom-right {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(255, 255, 255, 1);
+  border-width: 3px;
+}
+
 .affirmation-text {
   font-family: "Libertinus Math", system-ui;
   font-weight: 400;
@@ -153,23 +270,14 @@
   color: white;
 }
 
-/* Hover Effects */
-.text-container:hover .corner.top-left {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(255, 255, 255, 1);
-  border-width: 3px;
-}
-
-.text-container:hover .corner.bottom-right {
-  width: 60px;
-  height: 60px;
-  border-color: rgba(255, 255, 255, 1);
-  border-width: 3px;
-}
-
-
-.motion-div {
-    position: relative; /* Ensures it stays above the canvas */
-    z-index: 10; /* Higher than the canvas, ensures it's clickable */
+.centered-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

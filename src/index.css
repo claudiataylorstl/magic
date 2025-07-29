@@ -12,7 +12,7 @@
 
 /* Global animated gradient background */
 body {
-  background: linear-gradient(284deg,#db5461,#4c6085,#772d8b,#f5b800);
+  background: linear-gradient(184deg,#db5461,#4c6085,#772d8b);
   background-size: 240% 240%;
   animation: gradient-animation 12s ease infinite;
   margin: 0;
